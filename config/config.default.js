@@ -7,5 +7,5 @@
  */
 exports.auth = {
     enable: true,
-    package: 'egg-auth',
+    package: 'egg-router-auth',
 };

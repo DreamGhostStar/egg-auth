@@ -1,4 +1,4 @@
-# egg-auth
+# egg-router-auth
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -7,18 +7,18 @@
 [![Known Vulnerabilities][snyk-image]][snyk-url]
 [![npm download][download-image]][download-url]
 
-[npm-image]: https://img.shields.io/npm/v/egg-auth.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/egg-auth
-[travis-image]: https://img.shields.io/travis/eggjs/egg-auth.svg?style=flat-square
-[travis-url]: https://travis-ci.org/eggjs/egg-auth
-[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-auth.svg?style=flat-square
-[codecov-url]: https://codecov.io/github/eggjs/egg-auth?branch=master
-[david-image]: https://img.shields.io/david/eggjs/egg-auth.svg?style=flat-square
-[david-url]: https://david-dm.org/eggjs/egg-auth
-[snyk-image]: https://snyk.io/test/npm/egg-auth/badge.svg?style=flat-square
-[snyk-url]: https://snyk.io/test/npm/egg-auth
-[download-image]: https://img.shields.io/npm/dm/egg-auth.svg?style=flat-square
-[download-url]: https://npmjs.org/package/egg-auth
+[npm-image]: https://img.shields.io/npm/v/egg-router-auth.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/egg-router-auth
+[travis-image]: https://img.shields.io/travis/eggjs/egg-router-auth.svg?style=flat-square
+[travis-url]: https://travis-ci.org/eggjs/egg-router-auth
+[codecov-image]: https://img.shields.io/codecov/c/github/eggjs/egg-router-auth.svg?style=flat-square
+[codecov-url]: https://codecov.io/github/eggjs/egg-router-auth?branch=master
+[david-image]: https://img.shields.io/david/eggjs/egg-router-auth.svg?style=flat-square
+[david-url]: https://david-dm.org/eggjs/egg-router-auth
+[snyk-image]: https://snyk.io/test/npm/egg-router-auth/badge.svg?style=flat-square
+[snyk-url]: https://snyk.io/test/npm/egg-router-auth
+[download-image]: https://img.shields.io/npm/dm/egg-router-auth.svg?style=flat-square
+[download-url]: https://npmjs.org/package/egg-router-auth
 
 在egg项目中验证路由表中是否包含请求的url
 
@@ -32,7 +32,7 @@
 // config/plugin.js
 exports.auth = {
   enable: true,
-  package: 'egg-auth',
+  package: 'egg-router-auth',
 };
 ```
 
@@ -55,7 +55,7 @@ config.auth = {
 
 ## 提问交流
 
-请到 [egg issues](https://github.com/eggjs/egg/issues) 异步交流。
+请到 [egg issues](https://github.com/DreamGhostStar/egg-router-auth/issues) 异步交流。
 
 ## License
 
