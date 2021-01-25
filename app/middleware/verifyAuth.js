@@ -2,7 +2,7 @@
 
 module.exports = () => {
   return async (ctx, next) => {
-    const excludeUrls = ctx.app.config.auth.exclude || [];
+    const excludeUrls = ctx.app.config.auth.jwtExclude || [];
     const errorCode = ctx.app.config.auth.errorCode || -1;
     const url = ctx.request.url;
 
@@ -13,23 +13,6 @@ module.exports = () => {
         shouldVerify = false;
         break;
       }
-    }
-    let isHasUrl = false; // 路由中是否包含该url，默认未包含
-    for (let i = 0; i < ctx.app.router.stack.length; i++) {
-      const pathItem = ctx.app.router.stack[i];
-      if (pathItem.path === url) {
-        isHasUrl = true;
-        break;
-      }
-    }
-
-    if (!isHasUrl) {
-      ctx.body = {
-        code: errorCode,
-        data: '',
-        message: '路由表中未包含该路由',
-      };
-      return;
     }
 
     if (shouldVerify) {

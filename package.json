@@ -1,7 +1,7 @@
 {
   "name": "egg-router-auth",
-  "version": "1.0.1",
-  "description": "egg插件",
+  "version": "1.0.2",
+  "description": "egg插件：egg-router-auth",
   "eggPlugin": {
     "name": "auth"
   },
@@ -15,7 +15,9 @@
     "type": "git",
     "url": "https://github.com/DreamGhostStar/egg-router-auth"
   },
-  "dependencies": {},
+  "dependencies": {
+    "apidoc": "^0.26.0"
+  },
   "devDependencies": {
     "autod": "^3.0.1",
     "autod-egg": "^1.1.0",
@@ -34,6 +36,7 @@
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
+    "apidoc": "apidoc -i app/controller/ -o apidoc/",
     "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
     "pkgfiles": "egg-bin pkgfiles",
     "autod": "autod"
