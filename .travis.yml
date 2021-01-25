@@ -1,13 +1,14 @@
-
 language: node_js
 node_js:
-  - '8'
-  - '10'
-before_install:
-  - npm i npminstall -g
-install:
-  - npminstall
-script:
-  - npm run ci
-after_script:
-  - npminstall codecov && codecov
+  - "stable"
+cache:
+  directories:
+  - node_modules
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: "120275191@qq.com"
+  api_key: "$npm_token" # npm token
+  local_dir: dist # 部署的文件夹
+  on:
+    branch: master # GitHub page 所要查找的分支为master
