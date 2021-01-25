@@ -20,13 +20,15 @@
 [download-image]: https://img.shields.io/npm/dm/egg-router-auth.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-router-auth
 
+[中文](./README.zh_CN.md)
+
+## Usage scenarios
+
 + Verify whether the routing table contains the requested URL in the egg project
 
 + In the egg project, verify whether the user's JWT login exists in the licensed route
 
 + Verify the parameters of the route
-
-[中文](./README.zh_CN.md)
 
 ## Install
 

@@ -20,12 +20,6 @@
 [download-image]: https://img.shields.io/npm/dm/egg-router-auth.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-router-auth
 
-+ 在egg项目中验证路由表中是否包含请求的url
-
-+ 在egg项目中验证在许可的路由中是否存在用户的jwt登录
-
-+ 验证路由的参数
-
 [英文](./README.md)
 
 ## 开启插件
@@ -40,9 +34,11 @@ exports.auth = {
 
 ## 使用场景
 
-在egg项目中验证路由表中是否包含请求的url
++ 在egg项目中验证路由表中是否包含请求的url
 
-在egg项目中验证在许可的路由中是否存在用户的jwt登录
++ 在egg项目中验证在许可的路由中是否存在用户的jwt登录
+
++ 验证路由的参数
 
 ## 配置
 
