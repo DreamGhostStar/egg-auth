@@ -6,6 +6,6 @@
  * @property {String} SOME_KEY - some description
  */
 exports.auth = {
-    enable: true,
-    package: 'egg-router-auth',
+  enable: true,
+  package: 'egg-router-auth',
 };
