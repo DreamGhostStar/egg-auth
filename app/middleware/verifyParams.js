@@ -27,12 +27,14 @@ module.exports = () => {
     }
 
     // 获取apidoc编译生成的json
-    const apiParamConfigList = JSON.parse(fs.readFileSync('./apidoc/api_data.json', 'utf-8'));
+    const apiParamConfigList = JSON.parse(fs.readFileSync('./apidoc/output/api_data.json', 'utf-8'));
     let apiParam = null;
+
+    // 将获取到的json与传递的url和method进行比较
     for (let i = 0; i < apiParamConfigList.length; i++) {
       const apiParamConfigItem = apiParamConfigList[i];
       if (apiParamConfigItem.url === url &&
-                apiParamConfigItem.type.toLowerCase() === method.toLowerCase()) {
+        apiParamConfigItem.type.toLowerCase() === method.toLowerCase()) {
         apiParam = apiParamConfigItem;
         break;
       }
@@ -42,16 +44,25 @@ module.exports = () => {
       await next();
       return;
     }
+
     // 获取传递的参数
     const query = apiParam.type.toLowerCase() === 'get' ? ctx.query : ctx.request.body;
+
+    // 参数对比map
+    const transformMap = {
+      string: ctx.isString,
+      number: ctx.isNumber,
+      boolean: ctx.isBoolean
+    }
+
+    // 进行参数对比
     for (let i = 0; i < apiParam.parameter.fields.Parameter.length; i++) {
       const paramItemConfig = apiParam.parameter.fields.Parameter[i];
-      if (typeof query[paramItemConfig.field] !== paramItemConfig.type.toLowerCase()) {
+      if (!transformMap[paramItemConfig.type.toLowerCase()](query[paramItemConfig.field])) {
         ctx.body = {
           code: errorCode,
           data: '',
-          message: `${paramItemConfig.field} 类型为` +
-                        ` ${typeof query[paramItemConfig.field]} ，与预期不符`,
+          message: `${paramItemConfig.field} 参数类型错误`,
         };
         return;
       }

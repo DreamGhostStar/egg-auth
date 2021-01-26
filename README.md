@@ -20,57 +20,84 @@
 [download-image]: https://img.shields.io/npm/dm/egg-router-auth.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-router-auth
 
-[中文](./README.zh_CN.md)
-
-## Usage scenarios
-
-+ Verify whether the routing table contains the requested URL in the egg project
-
-+ In the egg project, verify whether the user's JWT login exists in the licensed route
-
-+ Verify the parameters of the route
-
-## Install
-
-```bash
-$ npm i egg-router-auth --save
-```
-
-## Configuration
+## 开启插件
 
 ```js
-// {app_root}/config/plugin.js
+// config/plugin.js
 exports.auth = {
   enable: true,
   package: 'egg-router-auth',
 };
 ```
 
+## 使用场景
+
++ 在egg项目中验证路由表中是否包含请求的url
+
++ 在egg项目中验证在许可的路由中是否存在用户的jwt登录
+
++ 验证路由的参数
+
+## 配置
+
+```js
+// config/config.default.js
+config.auth = {
+  jwtExclude: ['/api/login', '/api/public/verification'], // 验证用户登录需要跳过的路由
+  errorCode: -2, // 错误的code
+}
+```
+
+配置成功后如果请求 `/api/login/note` 就会被跳过，如果请求 `/api/test` 就需要验证jwt是否存在
+
 ```json
 // package.json
 {
   "scripts": {
-    "apidoc": "apidoc -i app/controller/ -o apidoc/"
+    "apidoc": "apidoc -i app/controller/ -o apidoc/output -t apidoc/template"
   },
 }
 ```
 
-```js
-// {app_root}/config/config.default.js
-config.auth = {
-  jwtExclude: ['/api/login', '/api/public/verification'], // route to skip to verify user login
-  errorCode: -2, // wrong code
-}
+`-i` 表明了 `apidoc` 会将目录中的apidoc参数解析成json格式
+
+`-o` 表示 `apidoc` 输出的目录
+
+`-t` 表示 `apidoc` 输出的模板，模板可以参照 [apidoc](https://apidocjs.com/) 进行配置，不过，`api_data.json` 必须拥有，因为它是这个插件的核心
+
+文件目录需按此配置
+
+```
+project
+├── app
+│   ├── controller
+│   │   └── home.js
+│   └── router.js
+├── apidoc
+│   └── output
+|       └── api_data.json
+│   └── template
+|       └── api_data.json
+|
+|...
 ```
 
-see [config/config.default.js](config/config.default.js) for more detail.
+在每次监听到 `/app/controller` 有文件内容发送改变后，会自动生成apidoc文档，以便在中间件中验证参数的正确性
 
-## Usage
+## apiParam 使用说明
+
+写法|说明|正确示例|错误示例
+-|-|-|-
+`string` | 字符串 | `xxx` | `-`
+`number` | 数字 | `123` | `123xssx`
+`boolean` | 布尔值 | `true` | `truexsa`
+
+## 使用
 
 ```js
 /**
  * @api {GET} /api/test 测试接口
- * @apiParam {String} user 文章名
+ * @apiParam {string} user 用户名
  */
   async test() {
     const { ctx } = this;
@@ -79,9 +106,13 @@ see [config/config.default.js](config/config.default.js) for more detail.
   }
 ```
 
-## Questions & Suggestions
+> `apiParam` 的参数类型可不区分大小写
 
-Please open an issue [here](https://github.com/DreamGhostStar/egg-router-auth/issues).
+插件会检测 url 为 `/api/test` 并且 method 为 `GET` 的请求，验证其参数是否正确
+
+## 提问交流
+
+请到 [egg-router-auth issues](https://github.com/DreamGhostStar/egg-router-auth/issues) 异步交流。
 
 ## License
 
