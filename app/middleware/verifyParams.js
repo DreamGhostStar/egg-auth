@@ -18,6 +18,7 @@ module.exports = () => {
     }
 
     if (!isHasUrl) {
+      ctx.status = 400
       ctx.body = {
         code: errorCode,
         data: '',
@@ -58,7 +59,9 @@ module.exports = () => {
     // 进行参数对比
     for (let i = 0; i < apiParam.parameter.fields.Parameter.length; i++) {
       const paramItemConfig = apiParam.parameter.fields.Parameter[i];
+      console.log(transformMap[paramItemConfig.type.toLowerCase()](query[paramItemConfig.field]))
       if (!transformMap[paramItemConfig.type.toLowerCase()](query[paramItemConfig.field])) {
+        ctx.status = 400
         ctx.body = {
           code: errorCode,
           data: '',
