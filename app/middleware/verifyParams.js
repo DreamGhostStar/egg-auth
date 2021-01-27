@@ -51,7 +51,13 @@ module.exports = () => {
       number: ctx.isNumber,
       boolean: ctx.isBoolean,
       null: ctx.isNull,
-      undefined: ctx.isUndefined
+      undefined: ctx.isUndefined,
+      'boolean[]': ctx.isBooleanArray,
+      'string[]': ctx.isStringArray,
+      'number[]': ctx.isNumberArray,
+      'object[]': ctx.isObjectArray,
+      object: ctx.isObject,
+      array: ctx.isArray
     };
 
     // 进行参数对比

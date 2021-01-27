@@ -84,7 +84,14 @@ project
 `string` | 字符串 | `xxx` | `-`
 `number` | 数字 | `123` | `123xssx`
 `boolean` | 布尔值 | `true` 或 `false` | `truexsa`
-`null` | 空值 | `null` | `null123`
+`null` | 空值 | `null` | `"null"`
+`undefined` | 空值 | `undefined` | `"undefined"`
+`object` | 空值 | `{}` | `[]`
+`array` | 空值 | `[]` | `{}`
+`boolean[]` | 空值 | `[true, false]` | `[true, "false"]`
+`string[]` | 空值 | `["xxx", "xxx1"]` | `-`
+`number[]` | 空值 | `[1, 3, 2]` | `[1, 3, "2"]`
+`object[]` | 空值 | `[{}, {}]` | `-`
 
 + 可以使用 `|` 分割，用于表示一个变量可能有多个参数的情况
 

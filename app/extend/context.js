@@ -34,4 +34,62 @@ module.exports = {
   isUndefined(val, method) {
     return val === undefined
   },
+  isBooleanArray(vals) {
+    if (!Array.isArray(vals)) {
+      return false
+    }
+    for (let i = 0; i < vals.length; i++) {
+      const val = vals[i];
+      if (typeof val !== 'boolean') {
+        return false
+      }
+    }
+
+    return true
+  },
+  isStringArray(vals) {
+    if (!Array.isArray(vals)) {
+      return false
+    }
+    for (let i = 0; i < vals.length; i++) {
+      const val = vals[i];
+      if (typeof val !== 'string') {
+        return false
+      }
+    }
+
+    return true
+  },
+  isNumberArray(vals) {
+    if (!Array.isArray(vals)) {
+      return false
+    }
+    for (let i = 0; i < vals.length; i++) {
+      const val = vals[i];
+      if (typeof val !== 'number') {
+        return false
+      }
+    }
+
+    return true
+  },
+  isObjectArray(vals) {
+    if (!Array.isArray(vals)) {
+      return false
+    }
+    for (let i = 0; i < vals.length; i++) {
+      const val = vals[i];
+      if (val.constructor === Object) {
+        return false
+      }
+    }
+
+    return true
+  },
+  isObject(val) {
+    return val.constructor === Object
+  },
+  isArray(vals) {
+    return Array.isArray(vals)
+  }
 };
