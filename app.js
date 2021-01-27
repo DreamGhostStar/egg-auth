@@ -10,6 +10,7 @@ module.exports = app => {
       console.error(new Date(), 'output参数必须配置')
       return
     }
+    
     // apidoc 输出
     const output = app.config.auth.output ? `-o ${app.config.auth.output}` : ''
     // apidoc 模板
