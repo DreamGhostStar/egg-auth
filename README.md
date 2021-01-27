@@ -50,21 +50,6 @@ config.auth = {
 
 配置成功后如果请求 `/api/login/note` 就会被跳过，如果请求 `/api/test` 就需要验证jwt是否存在
 
-```json
-// package.json
-{
-  "scripts": {
-    "apidoc": "apidoc -i app/controller/ -o apidoc/output -t apidoc/template"
-  },
-}
-```
-
-`-i` 表明了 `apidoc` 会将目录中的apidoc参数解析成json格式
-
-`-o` 表示 `apidoc` 输出的目录
-
-`-t` 表示 `apidoc` 输出的模板，模板可以参照 [apidoc](https://apidocjs.com/) 进行配置，不过，`api_data.json` 必须拥有，因为它是这个插件的核心
-
 文件目录需按此配置
 
 ```

@@ -7,7 +7,8 @@ module.exports = app => {
   }, () => {
     console.warn(new Date(), ' 检测到文件变化，正在执行编译命令...');
     const exec = require('child_process').exec;
-    const cmdStr = 'npm run apidoc';
+    // 将要执行的命令
+    const cmdStr = 'apidoc -i app/controller/ -o apidoc/output/ -t apidoc/template/';
     exec(cmdStr, (err, stdout) => {
       if (err) {
         console.log(err);

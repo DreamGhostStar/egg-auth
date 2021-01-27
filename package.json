@@ -1,6 +1,6 @@
 {
   "name": "egg-router-auth",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "egg插件：egg-router-auth",
   "eggPlugin": {
     "name": "auth"
@@ -36,7 +36,6 @@
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
-    "apidoc": "apidoc -i app/controller/ -o apidoc/",
     "ci": "egg-bin pkgfiles --check && npm run lint && npm run cov",
     "pkgfiles": "egg-bin pkgfiles",
     "autod": "autod"
