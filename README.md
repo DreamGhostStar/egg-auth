@@ -90,7 +90,10 @@ project
 -|-|-|-
 `string` | 字符串 | `xxx` | `-`
 `number` | 数字 | `123` | `123xssx`
-`boolean` | 布尔值 | `true` | `truexsa`
+`boolean` | 布尔值 | `true` 或 `false` | `truexsa`
+`null` | 空值 | `null` | `null123`
+
++ 可以使用 `|` 分割，用于表示一个变量可能有多个参数的情况
 
 ## 使用
 
