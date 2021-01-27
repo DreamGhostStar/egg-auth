@@ -32,7 +32,6 @@
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
-    "apidoc": "apidoc -i app/controller/ -o apidoc/",
     "ci": "npm run lint && npm run cov",
     "autod": "autod"
   },

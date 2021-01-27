@@ -11,7 +11,7 @@ module.exports = () => {
     let isHasUrl = false; // 路由中是否包含该url，默认未包含
     for (let i = 0; i < ctx.app.router.stack.length; i++) {
       const pathItem = ctx.app.router.stack[i];
-      if (pathItem.path === url) {
+      if (pathItem.path === url && pathItem.methods.includes(method.toUpperCase())) {
         isHasUrl = true;
         break;
       }
