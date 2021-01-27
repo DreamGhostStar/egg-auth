@@ -32,7 +32,7 @@ exports.auth = {
 
 ## 使用场景
 
-+ 在egg项目中验证路由表中是否包含请求的url
++ 在egg项目中验证路由表中是否包含请求的url，如果请求了路由表中未存在的路由，则会提示相应信息
 
 + 在egg项目中验证在许可的路由中是否存在用户的jwt登录
 
@@ -44,15 +44,21 @@ exports.auth = {
 // config/config.default.js
 config.auth = {
   jwtExclude: ['/api/login', '/api/public/verification'], // 验证用户登录需要跳过的路由
-  errorCode: -2, // 错误的code
+  errorCode: -2, // 错误的code,
+  output: 'apidoc/output', // apidoc输出目录，必选
+  template: 'apidoc/template' // apidoc模板，可选
 }
 ```
 
 配置成功后如果请求 `/api/login/note` 就会被跳过，如果请求 `/api/test` 就需要验证jwt是否存在
 
+`template` 必须包含 `api_data.json` 文件，否则无法运行，因为 `api_data.json` 是整个插件的核心文件
+
+如果修改了 `template` 的配置路径，建议先将 `output` 所处的文件目录删除后再进行编译操作
+
 ### 文件目录
 
-文件目录需按此配置
+**建议**文件目录需按此配置
 
 ```
 project
@@ -69,7 +75,7 @@ project
 |...
 ```
 
-在每次监听到 `/app/controller` 有文件内容发送改变后，会自动生成apidoc文档，以便在中间件中验证参数的正确性
+在每次监听到 `/app/controller` 有文件内容发送改变后，会自动生成apidoc文档（存放路径在之前设置的output目录下），以便在中间件中验证参数的正确性
 
 ## apiParam 使用说明
 

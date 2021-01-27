@@ -23,6 +23,12 @@ module.exports = appInfo => {
     // myAppName: 'egg',
   };
 
+  config.auth = {
+    jwtExclude: ['/api/login', '/api/public/verificationCode'],
+    output: 'apidoc/output',
+    template: 'apidoc/template'
+  }
+
   return {
     ...config,
     ...userConfig,

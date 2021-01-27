@@ -12,7 +12,7 @@ module.exports = () => {
     for (let i = 0; i < ctx.app.router.stack.length; i++) {
       const pathItem = ctx.app.router.stack[i];
       if (pathItem.path === url && pathItem.methods.includes(method.toUpperCase())) {
-        isHasUrl = true;
+        isHasUrl = true
         break;
       }
     }
@@ -58,6 +58,7 @@ module.exports = () => {
     for (let i = 0; i < apiParam.parameter.fields.Parameter.length; i++) {
       const paramItemConfig = apiParam.parameter.fields.Parameter[i];
       const types = paramItemConfig.type.replace(/\s*/, '').split('|'); // 处理一个变量多个参数的情况
+      // 如果为可选参数，增加undefined类型校验
       if (paramItemConfig.optional) {
         types.push('undefined')
       }

@@ -7,9 +7,10 @@
     "declarations": true
   },
   "dependencies": {
+    "apidoc": "^0.25.0",
     "egg": "^2.15.1",
-    "egg-scripts": "^2.11.0",
-    "apidoc": "^0.25.0"
+    "egg-router-auth": "^1.1.1",
+    "egg-scripts": "^2.11.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",

@@ -6,4 +6,8 @@ module.exports = {
   // static: {
   //   enable: true,
   // }
+  auth: {
+    enable: true,
+    package: 'egg-router-auth'
+  }
 };
