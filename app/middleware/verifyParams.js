@@ -19,11 +19,7 @@ module.exports = () => {
 
     if (!isHasUrl) {
       ctx.status = 400
-      ctx.body = {
-        code: errorCode,
-        data: '',
-        message: '路由表中未包含该路由',
-      };
+      ctx.body = ctx.returnErrorInfo(errorCode, '', '路由表中未包含该路由')
       return;
     }
 
@@ -53,21 +49,28 @@ module.exports = () => {
     const transformMap = {
       string: ctx.isString,
       number: ctx.isNumber,
-      boolean: ctx.isBoolean
+      boolean: ctx.isBoolean,
+      null: ctx.isNull
     }
 
     // 进行参数对比
     for (let i = 0; i < apiParam.parameter.fields.Parameter.length; i++) {
       const paramItemConfig = apiParam.parameter.fields.Parameter[i];
-      console.log(transformMap[paramItemConfig.type.toLowerCase()](query[paramItemConfig.field]))
-      if (!transformMap[paramItemConfig.type.toLowerCase()](query[paramItemConfig.field])) {
+      const types = paramItemConfig.type.replace(/\s*/, '').split('|') // 处理一个变量多个参数的情况
+      let isMatch = false; // 是否能有一个匹配成功的
+      for (let j = 0; j < types.length; j++) {
+        const type = types[j];
+        if (transformMap[type.toLowerCase()](query[paramItemConfig.field])) {
+          isMatch = true; // 只要有一个能匹配成功的，就更改其值
+          break;
+        }
+      }
+
+      // 如果isMatch为false，则代表没有一个能匹配成功的，需要返回错误信息
+      if(!isMatch){
         ctx.status = 400
-        ctx.body = {
-          code: errorCode,
-          data: '',
-          message: `${paramItemConfig.field} 参数类型错误`,
-        };
-        return;
+        ctx.body = ctx.returnErrorInfo(errorCode, '', `${paramItemConfig.field} 参数类型错误`)
+        return
       }
     }
 

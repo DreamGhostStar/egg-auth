@@ -1,6 +1,13 @@
 'use strict';
 
 module.exports = {
+  returnErrorInfo(errorCode, data, message) {
+    return {
+      code: errorCode,
+      data,
+      message
+    }
+  },
   isNumber(val) { // 转为数字
     var regPos = /^\d+(\.\d+)?$/; //非负浮点数
     var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
@@ -15,5 +22,8 @@ module.exports = {
   },
   isString(val) {
     return typeof val === 'string'
+  },
+  isNull(val) {
+    return val === 'null'
   }
 };
