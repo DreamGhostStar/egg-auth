@@ -31,4 +31,7 @@ module.exports = {
     }
     return val === null;
   },
+  isUndefined(val, method) {
+    return val === undefined
+  },
 };

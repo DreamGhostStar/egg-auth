@@ -51,19 +51,23 @@ module.exports = () => {
       number: ctx.isNumber,
       boolean: ctx.isBoolean,
       null: ctx.isNull,
+      undefined: ctx.isUndefined
     };
 
     // 进行参数对比
     for (let i = 0; i < apiParam.parameter.fields.Parameter.length; i++) {
       const paramItemConfig = apiParam.parameter.fields.Parameter[i];
       const types = paramItemConfig.type.replace(/\s*/, '').split('|'); // 处理一个变量多个参数的情况
+      if (paramItemConfig.optional) {
+        types.push('undefined')
+      }
       let isMatch = false; // 是否能有一个匹配成功的
       for (let j = 0; j < types.length; j++) {
         const type = types[j];
         if (transformMap[type.toLowerCase()](
-          query[paramItemConfig.field], // 参数值
-          method.toLowerCase() // 请求类型
-        )) {
+            query[paramItemConfig.field], // 参数值
+            method.toLowerCase() // 请求类型
+          )) {
           isMatch = true; // 只要有一个能匹配成功的，就更改其值
           break;
         }

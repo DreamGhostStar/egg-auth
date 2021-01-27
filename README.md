@@ -82,14 +82,36 @@ project
 
 + 可以使用 `|` 分割，用于表示一个变量可能有多个参数的情况
 
++ 可以使用 `[]` 包裹变量，用于表示变量是可选参数
+
 ## 使用
 
 ```js
-/**
- * @api {GET} /api/test 测试接口
- * @apiParam {string} user 用户名
- */
+  /**
+  * @api {GET} /api/test 普通测试接口
+  * @apiParam {string} user 用户名
+  */
   async test() {
+    const { ctx } = this;
+    const res = '测试';
+    ctx.body = res;
+  }
+  
+  /**
+  * @api {GET} /api/test 多参数类型测试接口
+  * @apiParam {string|null} user 用户名
+  */
+  async test1() {
+    const { ctx } = this;
+    const res = '测试';
+    ctx.body = res;
+  }
+  
+  /**
+  * @api {GET} /api/test 可选参数测试接口
+  * @apiParam {string} [user] 用户名
+  */
+  async test2() {
     const { ctx } = this;
     const res = '测试';
     ctx.body = res;
