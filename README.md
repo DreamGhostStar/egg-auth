@@ -86,12 +86,12 @@ project
 `boolean` | 布尔值 | `true` 或 `false` | `truexsa`
 `null` | 空值 | `null` | `"null"`
 `undefined` | 空值 | `undefined` | `"undefined"`
-`object` | 空值 | `{}` | `[]`
-`array` | 空值 | `[]` | `{}`
-`boolean[]` | 空值 | `[true, false]` | `[true, "false"]`
-`string[]` | 空值 | `["xxx", "xxx1"]` | `-`
-`number[]` | 空值 | `[1, 3, 2]` | `[1, 3, "2"]`
-`object[]` | 空值 | `[{}, {}]` | `-`
+`object` | 对象 | `{}` | `[]`
+`array` | 数组 | `[]` | `{}`
+`boolean[]` | 只含有布尔类型的数组 | `[true, false]` | `[true, "false"]`
+`string[]` | 只含有string类型的数组 | `["xxx", "xxx1"]` | `-`
+`number[]` | 只含有数值类型的数组 | `[1, 3, 2]` | `[1, 3, "2"]`
+`object[]` | 只含有对象类型的数组 | `[{}, {}]` | `-`
 
 + 可以使用 `|` 分割，用于表示一个变量可能有多个参数的情况
 
