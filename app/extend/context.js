@@ -5,31 +5,31 @@ module.exports = {
     return {
       code: errorCode,
       data,
-      message
-    }
+      message,
+    };
   },
-  isNumber(val, _method) { // 转为数字
-    var regPos = /^\d+(\.\d+)?$/; //非负浮点数
-    var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
+  isNumber(val, method) { // 转为数字
+    const regPos = /^\d+(\.\d+)?$/; // 非负浮点数
+    const regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; // 负浮点数
     if (regPos.test(val) || regNeg.test(val)) {
       return true;
-    } else {
-      return false;
     }
+    return false;
+
   },
   isBoolean(val, method) {
-    if(method === 'get'){
-      return val === 'true' || val === 'false'
+    if (method === 'get') {
+      return val === 'true' || val === 'false';
     }
-    return typeof val === 'boolean'
+    return typeof val === 'boolean';
   },
-  isString(val, _method) {
-    return typeof val === 'string'
+  isString(val, method) {
+    return typeof val === 'string';
   },
   isNull(val, method) {
-    if(method === 'get'){
-      return val === 'null'
+    if (method === 'get') {
+      return val === 'null';
     }
-    return val === null
-  }
+    return val === null;
+  },
 };
