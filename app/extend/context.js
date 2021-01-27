@@ -8,7 +8,7 @@ module.exports = {
       message
     }
   },
-  isNumber(val) { // 转为数字
+  isNumber(val, _method) { // 转为数字
     var regPos = /^\d+(\.\d+)?$/; //非负浮点数
     var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
     if (regPos.test(val) || regNeg.test(val)) {
@@ -17,13 +17,19 @@ module.exports = {
       return false;
     }
   },
-  isBoolean(val) {
-    return val === 'true' || val === 'false'
+  isBoolean(val, method) {
+    if(method === 'get'){
+      return val === 'true' || val === 'false'
+    }
+    return typeof val === 'boolean'
   },
-  isString(val) {
+  isString(val, _method) {
     return typeof val === 'string'
   },
-  isNull(val) {
-    return val === 'null'
+  isNull(val, method) {
+    if(method === 'get'){
+      return val === 'null'
+    }
+    return val === null
   }
 };
