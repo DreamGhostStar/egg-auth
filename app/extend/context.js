@@ -91,5 +91,16 @@ module.exports = {
   },
   isArray(vals) {
     return Array.isArray(vals)
+  },
+  findParam(params, query) {
+    if(params.length === 0){
+      return query
+    }
+    const startElem = params.shift() // 删除并获取开头第一个元素
+    const param = query[startElem]
+    if(param === undefined && params.length !== 0){
+      return undefined
+    }
+    return this.findParam(params, param)
   }
 };

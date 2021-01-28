@@ -64,6 +64,7 @@ module.exports = () => {
     for (let i = 0; i < apiParam.parameter.fields.Parameter.length; i++) {
       const paramItemConfig = apiParam.parameter.fields.Parameter[i];
       const types = paramItemConfig.type.replace(/\s*/, '').split('|'); // 处理一个变量多个参数的情况
+      const requestParam = ctx.findParam(paramItemConfig.field.split('.'), query) // 获取真正的参数
       // 如果为可选参数，增加undefined类型校验
       if (paramItemConfig.optional) {
         types.push('undefined')
@@ -72,7 +73,7 @@ module.exports = () => {
       for (let j = 0; j < types.length; j++) {
         const type = types[j];
         if (transformMap[type.toLowerCase()](
-            query[paramItemConfig.field], // 参数值
+            requestParam, // 参数值
             method.toLowerCase() // 请求类型
           )) {
           isMatch = true; // 只要有一个能匹配成功的，就更改其值

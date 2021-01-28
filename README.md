@@ -85,7 +85,6 @@ project
 `number` | 数字 | `123` | `123xssx`
 `boolean` | 布尔值 | `true` 或 `false` | `truexsa`
 `null` | 空值 | `null` | `"null"`
-`undefined` | 空值 | `undefined` | `"undefined"`
 `object` | 对象 | `{}` | `[]`
 `array` | 数组 | `[]` | `{}`
 `boolean[]` | 只含有布尔类型的数组 | `[true, false]` | `[true, "false"]`
@@ -100,6 +99,7 @@ project
 ## 使用
 
 ```js
+  // app/controller/home.js
   /**
   * @api {GET} /api/test 普通测试接口
   * @apiParam {string} user 用户名
@@ -129,11 +129,35 @@ project
     const res = '测试';
     ctx.body = res;
   }
+  
+  /**
+  * @api {GET} /api/test 复杂类型测试接口
+  * @apiParam {object} user 用户
+  * @apiParam {string} user.name 用户名
+  */
+  async test3() {
+    const { ctx } = this;
+    const res = '测试';
+    ctx.body = res;
+  }
 ```
 
 > `apiParam` 的参数类型可不区分大小写
 
 插件会检测 url 为 `/api/test` 并且 method 为 `GET` 的请求，验证其参数是否正确
+
+### 特别说明
+
+```js
+  // 如果我们想给user.name.xxx检测string类型
+  /**
+  * @api {GET} /api/test 复杂类型测试接口
+  * @apiParam {object} user 用户
+  * @apiParam {object} user.name 用户名
+  * @apiParam {string} name.xxx 参数 // 错误示例
+  * @apiParam {string} user.name.xxx 参数 // 正确示例
+  */
+```
 
 ## 提问交流
 
