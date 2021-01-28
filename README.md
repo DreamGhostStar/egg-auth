@@ -20,6 +20,12 @@
 [download-image]: https://img.shields.io/npm/dm/egg-router-auth.svg?style=flat-square
 [download-url]: https://npmjs.org/package/egg-router-auth
 
+## 安装
+
+```
+npm i egg-router-auth --save
+```
+
 ## 开启插件
 
 ```js
