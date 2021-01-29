@@ -60,6 +60,12 @@ module.exports = () => {
       array: ctx.isArray
     };
 
+    // 如果无参数传递，则不进行参数验证操作
+    if (!apiParam.parameter) {
+      await next();
+      return
+    }
+
     // 进行参数对比
     for (let i = 0; i < apiParam.parameter.fields.Parameter.length; i++) {
       const paramItemConfig = apiParam.parameter.fields.Parameter[i];
