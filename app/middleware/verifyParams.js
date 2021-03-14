@@ -7,6 +7,10 @@ module.exports = () => {
     const url = ctx.req._parsedUrl.pathname; // 请求url
     const method = ctx.request.method; // 请求方法
 
+    if (ctx.websocket) {
+      await next();
+      return
+    }
     // 检测路由表中是否含有该路由
     let isHasUrl = false; // 路由中是否包含该url，默认未包含
     for (let i = 0; i < ctx.app.router.stack.length; i++) {
