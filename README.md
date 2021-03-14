@@ -49,6 +49,7 @@ exports.auth = {
 ```js
 // config/config.default.js
 config.auth = {
+  enableJwtVerify: false, // true代表启用jwt验证，false代表不启用，默认为true
   jwtExclude: ['/api/login', '/api/public/verification'], // 验证用户登录需要跳过的路由
   errorCode: -2, // 错误的code,
   output: 'apidoc/output', // apidoc输出目录，必选
